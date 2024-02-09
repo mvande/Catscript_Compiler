@@ -166,7 +166,6 @@ public class CatScriptTokenizer {
             }
             break;
         }
-        lineOffset++;
     }
 
     //===============================================================
@@ -195,6 +194,7 @@ public class CatScriptTokenizer {
     private char takeChar() {
         char c = src.charAt(position);
         position++;
+        lineOffset++;
         return c;
     }
 
