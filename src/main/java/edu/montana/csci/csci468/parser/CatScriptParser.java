@@ -57,11 +57,84 @@ public class CatScriptParser {
     //============================================================
 
     private Statement parseProgramStatement() {
+        Statement funcStatement = parseFunctionStatement();
+        if (funcStatement != null) {
+            return funcStatement;
+        }
+        return parseStatement();
+    }
+
+    private Statement parseStatement() {
+        Statement forStmt = parseForStatement();
+        if (forStmt != null) {
+            return forStmt;
+        }
+        Statement ifStmt = parseIfStatement();
+        if (ifStmt != null) {
+            return ifStmt;
+        }
         Statement printStmt = parsePrintStatement();
         if (printStmt != null) {
             return printStmt;
         }
+        Statement varStmt = parseVarStatement();
+        if (varStmt != null) {
+            return varStmt;
+        }
+        Statement assignStmt = parseAssignStatement();
+        if (assignStmt != null) {
+            return assignStmt;
+        }
+        Statement funcCallStmt = parseFuncCallStatement();
+        if (funcCallStmt != null) {
+            return funcCallStmt;
+        }
         return new SyntaxErrorStatement(tokens.consumeToken());
+    }
+
+    private Statement parseFunctionStatement() {
+        return null;
+    }
+
+    private Statement parseForStatement() {
+        return null;
+    }
+
+    private Statement parseIfStatement() {
+        if (tokens.match(IF)) {
+            Token ifToken = tokens.consumeToken();
+            IfStatement ifStatement = new IfStatement();
+
+            require(LEFT_PAREN, ifStatement);
+            Expression testExpression = parseExpression();
+            ifStatement.setExpression(testExpression);
+            require(RIGHT_PAREN, ifStatement);
+
+            require(LEFT_BRACE, ifStatement);
+            List<Statement> ifStms = new ArrayList<>();
+            while(tokens.hasMoreTokens() && !tokens.match(RIGHT_BRACE)) {
+                Statement trueStatment = parseStatement();
+                ifStms.add(trueStatment);
+            }
+            require(RIGHT_BRACE, ifStatement);
+            ifStatement.setTrueStatements(ifStms);
+
+            if (tokens.matchAndConsume(ELSE)) {
+                List<Statement> elseStms = new ArrayList<>();
+                if (tokens.match(IF)) {
+                    elseStms.add(parseIfStatement());
+                }
+                require(LEFT_BRACE, ifStatement);
+                while(tokens.hasMoreTokens() && !tokens.match(RIGHT_BRACE)) {
+                    Statement elseStatment = parseStatement();
+                    elseStms.add(elseStatment);
+                }
+                require(RIGHT_BRACE, ifStatement);
+                ifStatement.setElseStatements(elseStms);
+            }
+            return ifStatement;
+        }
+        return null;
     }
 
     private Statement parsePrintStatement() {
@@ -78,6 +151,23 @@ public class CatScriptParser {
         } else {
             return null;
         }
+    }
+
+    private Statement parseVarStatement() {
+        return null;
+    }
+
+    private Statement parseAssignStatement() {
+        return null;
+    }
+
+    private Statement parseFuncCallStatement() {
+        if (tokens.match(IDENTIFIER)) {
+            Token functionToken = tokens.consumeToken();
+            FunctionCallStatement funcCallStmt = new FunctionCallStatement(parseFunctionCallExpression(functionToken));
+            return funcCallStmt;
+        }
+        return null;
     }
 
     //============================================================
