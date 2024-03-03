@@ -156,17 +156,7 @@ public class CatScriptParser {
         if (tokens.match(IDENTIFIER)) {
             Token identifierToken = tokens.consumeToken();
             if (tokens.matchAndConsume(LEFT_PAREN)) {
-                List<Expression> args = new ArrayList<>();
-                if(!tokens.match(RIGHT_PAREN)) {
-                    do {
-                        Expression expression = parseExpression();
-                        args.add(expression);
-                    } while(tokens.matchAndConsume(COMMA) && tokens.hasMoreTokens());
-                }
-                FunctionCallExpression funcExpression = new FunctionCallExpression(identifierToken.getStringValue(), args);
-                funcExpression.setStart(identifierToken);
-                funcExpression.setEnd(require(RIGHT_PAREN, funcExpression, ErrorType.UNTERMINATED_ARG_LIST));
-                return funcExpression;
+                return parseFunctionCallExpression(identifierToken);
             }
             IdentifierExpression identifierExpression = new IdentifierExpression(identifierToken.getStringValue());
             identifierExpression.setToken(identifierToken);
@@ -219,6 +209,21 @@ public class CatScriptParser {
             SyntaxErrorExpression syntaxErrorExpression = new SyntaxErrorExpression(tokens.consumeToken());
             return syntaxErrorExpression;
         }
+    }
+
+    private FunctionCallExpression parseFunctionCallExpression(Token functionToken) {
+        List<Expression> args = new ArrayList<>();
+        if(!tokens.match(RIGHT_PAREN)) {
+            do {
+                Expression expression = parseExpression();
+                args.add(expression);
+            } while(tokens.matchAndConsume(COMMA) && tokens.hasMoreTokens());
+        }
+        FunctionCallExpression funcExpression = new FunctionCallExpression(functionToken.getStringValue(), args);
+        funcExpression.setStart(functionToken);
+        funcExpression.setEnd(require(RIGHT_PAREN, funcExpression, ErrorType.UNTERMINATED_ARG_LIST));
+        return funcExpression;
+
     }
 
     //============================================================
