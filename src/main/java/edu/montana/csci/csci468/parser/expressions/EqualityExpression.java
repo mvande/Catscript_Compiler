@@ -7,6 +7,8 @@ import edu.montana.csci.csci468.parser.SymbolTable;
 import edu.montana.csci.csci468.tokenizer.Token;
 import edu.montana.csci.csci468.tokenizer.TokenType;
 
+import java.util.Objects;
+
 public class EqualityExpression extends Expression {
 
     private final Token operator;
@@ -53,7 +55,13 @@ public class EqualityExpression extends Expression {
 
     @Override
     public Object evaluate(CatscriptRuntime runtime) {
-        return super.evaluate(runtime);
+        Object lhsValue = leftHandSide.evaluate(runtime);
+        Object rhsValue = rightHandSide.evaluate(runtime);
+        if (this.isEqual()) {
+            return Objects.equals(lhsValue, rhsValue);
+        } else {
+            return !Objects.equals(lhsValue, rhsValue);
+        }
     }
 
     @Override

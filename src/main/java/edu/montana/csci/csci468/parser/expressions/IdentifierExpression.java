@@ -26,6 +26,7 @@ public class IdentifierExpression extends Expression {
 
     @Override
     public void validate(SymbolTable symbolTable) {
+        boolean hasName = symbolTable.hasSymbol(name);
         CatscriptType type = symbolTable.getSymbolType(getName());
         if (type == null) {
             addError(ErrorType.UNKNOWN_NAME);
@@ -40,7 +41,7 @@ public class IdentifierExpression extends Expression {
 
     @Override
     public Object evaluate(CatscriptRuntime runtime) {
-        return super.evaluate(runtime);
+        return runtime.getValue(name);
     }
 
     @Override

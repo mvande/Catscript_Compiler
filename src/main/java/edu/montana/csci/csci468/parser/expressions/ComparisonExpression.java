@@ -8,6 +8,8 @@ import edu.montana.csci.csci468.parser.ParseError;
 import edu.montana.csci.csci468.parser.SymbolTable;
 import edu.montana.csci.csci468.tokenizer.Token;
 
+import java.util.Objects;
+
 import static edu.montana.csci.csci468.tokenizer.TokenType.*;
 
 public class ComparisonExpression extends Expression {
@@ -71,7 +73,19 @@ public class ComparisonExpression extends Expression {
 
     @Override
     public Object evaluate(CatscriptRuntime runtime) {
-        return super.evaluate(runtime);
+        Integer lhsValue = (Integer) leftHandSide.evaluate(runtime);
+        Integer rhsValue = (Integer) rightHandSide.evaluate(runtime);
+        if (this.isGreater()) {
+            return lhsValue > rhsValue;
+        } else if (this.isGreaterThanOrEqual()) {
+            return lhsValue >= rhsValue;
+        } else if (this.isLessThan()) {
+            return lhsValue < rhsValue;
+        } else if (this.isLessThanOrEqual()) {
+            return lhsValue <= rhsValue;
+        } else {
+            return null;
+        }
     }
 
     @Override

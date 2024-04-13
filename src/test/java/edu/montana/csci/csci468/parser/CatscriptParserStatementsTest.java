@@ -60,7 +60,7 @@ public class CatscriptParserStatementsTest extends CatscriptTestBase {
         assertNotNull(expr);
         assertTrue(expr.getExpression() instanceof ComparisonExpression);
         assertEquals(1, expr.getTrueStatements().size());
-        assertEquals(1, expr.getTrueStatements().size());
+        assertEquals(1, expr.getElseStatements().size());
     }
 
     @Test
