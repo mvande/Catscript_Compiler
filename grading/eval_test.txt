@@ -23,11 +23,7 @@
 [INFO] skip non existing resourceDirectory /Users/carson/Projects/msu/csci-468-spring2024/grading/scripts/repos/matthew_vandeberg/src/test/resources
 [INFO] 
 [INFO] --- compiler:3.1:testCompile (default-testCompile) @ csci-468-spring2022 ---
-[INFO] Changes detected - recompiling the module!
-[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
-[INFO] Compiling 27 source files to /Users/carson/Projects/msu/csci-468-spring2024/grading/scripts/repos/matthew_vandeberg/target/test-classes
-[WARNING] /Users/carson/Projects/msu/csci-468-spring2024/grading/scripts/repos/matthew_vandeberg/src/test/java/edu/montana/csci/csci468/CatscriptTestBase.java: Some input files use unchecked or unsafe operations.
-[WARNING] /Users/carson/Projects/msu/csci-468-spring2024/grading/scripts/repos/matthew_vandeberg/src/test/java/edu/montana/csci/csci468/CatscriptTestBase.java: Recompile with -Xlint:unchecked for details.
+[INFO] Nothing to compile - all classes are up to date
 [INFO] 
 [INFO] --- surefire:2.22.1:test (default-test) @ csci-468-spring2022 ---
 [INFO] 
@@ -35,73 +31,31 @@
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running edu.montana.csci.csci468.tokenizer.CatScriptTokenizerTest
-[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s - in edu.montana.csci.csci468.tokenizer.CatScriptTokenizerTest
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s - in edu.montana.csci.csci468.tokenizer.CatScriptTokenizerTest
 [INFO] Running edu.montana.csci.csci468.parser.CatscriptParserStatementsTest
-list<int><int>
-[INFO] Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s - in edu.montana.csci.csci468.parser.CatscriptParserStatementsTest
+[INFO] Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s - in edu.montana.csci.csci468.parser.CatscriptParserStatementsTest
 [INFO] Running edu.montana.csci.csci468.parser.CatscriptParserTypeCheckingTest
-[ERROR] Tests run: 10, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.01 s <<< FAILURE! - in edu.montana.csci.csci468.parser.CatscriptParserTypeCheckingTest
-[ERROR] testBasicExpressionsHaveProperType  Time elapsed: 0.003 s  <<< ERROR!
-edu.montana.csci.csci468.parser.ParseErrorException: 
-Parse Errors Occurred:
-
-Line 1:"" + 1
-           ^
-
-Error: Incompatible types
-
-
-	at edu.montana.csci.csci468.parser.CatscriptParserTypeCheckingTest.testBasicExpressionsHaveProperType(CatscriptParserTypeCheckingTest.java:22)
-
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s - in edu.montana.csci.csci468.parser.CatscriptParserTypeCheckingTest
 [INFO] Running edu.montana.csci.csci468.parser.CatscriptParserErrorsTest
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in edu.montana.csci.csci468.parser.CatscriptParserErrorsTest
 [INFO] Running edu.montana.csci.csci468.parser.CatscriptParserSymbolCheckingTest
-[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in edu.montana.csci.csci468.parser.CatscriptParserSymbolCheckingTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in edu.montana.csci.csci468.parser.CatscriptParserSymbolCheckingTest
 [INFO] Running edu.montana.csci.csci468.parser.CatscriptParserExpressionsTest
-[INFO] Tests run: 29, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s - in edu.montana.csci.csci468.parser.CatscriptParserExpressionsTest
+[INFO] Tests run: 29, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s - in edu.montana.csci.csci468.parser.CatscriptParserExpressionsTest
 [INFO] Running edu.montana.csci.csci468.eval.CatscriptStatementExecutionTest
-[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s - in edu.montana.csci.csci468.eval.CatscriptStatementExecutionTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s - in edu.montana.csci.csci468.eval.CatscriptStatementExecutionTest
 [INFO] Running edu.montana.csci.csci468.eval.CatscriptBasicExpressionEvalTest
-[ERROR] Tests run: 8, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.002 s <<< FAILURE! - in edu.montana.csci.csci468.eval.CatscriptBasicExpressionEvalTest
-[ERROR] additiveStringExpressionEvaluatesProperly  Time elapsed: 0 s  <<< ERROR!
-edu.montana.csci.csci468.parser.ParseErrorException: 
-Parse Errors Occurred:
-
-Line 1:1 + "a"
-      ^
-
-Error: Incompatible types
-
-
-	at edu.montana.csci.csci468.eval.CatscriptBasicExpressionEvalTest.additiveStringExpressionEvaluatesProperly(CatscriptBasicExpressionEvalTest.java:43)
-
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s - in edu.montana.csci.csci468.eval.CatscriptBasicExpressionEvalTest
 [INFO] Running edu.montana.csci.csci468.eval.CatscriptFunctionArgsAndReturnEvalTest
-list<int><int>
-list<int><int>
 [INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s - in edu.montana.csci.csci468.eval.CatscriptFunctionArgsAndReturnEvalTest
 [INFO] 
 [INFO] Results:
 [INFO] 
-[ERROR] Errors: 
-[ERROR]   CatscriptBasicExpressionEvalTest.additiveStringExpressionEvaluatesProperly:43->CatscriptTestBase.evaluateExpression:95 » ParseError
-[ERROR]   CatscriptParserTypeCheckingTest.testBasicExpressionsHaveProperType:22->CatscriptTestBase.parseExpression:28->CatscriptTestBase.parseExpression:35 » ParseError
-[INFO] 
-[ERROR] Tests run: 116, Failures: 0, Errors: 2, Skipped: 0
+[INFO] Tests run: 116, Failures: 0, Errors: 0, Skipped: 0
 [INFO] 
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  2.413 s
-[INFO] Finished at: 2024-04-12T23:40:59-06:00
+[INFO] Total time:  2.207 s
+[INFO] Finished at: 2024-04-13T00:49:57-06:00
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.1:test (default-test) on project csci-468-spring2022: There are test failures.
-[ERROR] 
-[ERROR] Please refer to /Users/carson/Projects/msu/csci-468-spring2024/grading/scripts/repos/matthew_vandeberg/target/surefire-reports for the individual test results.
-[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
-[ERROR] -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
