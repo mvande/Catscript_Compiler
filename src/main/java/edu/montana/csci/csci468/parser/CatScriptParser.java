@@ -301,7 +301,6 @@ public class CatScriptParser {
                 case "list":
                     if (tokens.matchAndConsume(LESS)) {
                         typeLiteral.setType(new CatscriptType.ListType(parseTypeExpression().getType()));
-                        System.out.println(typeLiteral.getType());
                         tokens.consumeToken();
                     } else {
                         typeLiteral.setType(new CatscriptType.ListType(CatscriptType.NULL));
