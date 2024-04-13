@@ -44,10 +44,10 @@ public class AdditiveExpression extends Expression {
                 rightHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
             }
         } else {
-            if (!leftHandSide.getType().isAssignableFrom(CatscriptType.STRING)) {
+            if (leftHandSide.toString() == null) {
                 leftHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
             }
-            if (!rightHandSide.getType().isAssignableFrom(CatscriptType.STRING)) {
+            if (rightHandSide.toString() == null) {
                 rightHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
             }
         }
@@ -76,7 +76,6 @@ public class AdditiveExpression extends Expression {
     public Object evaluate(CatscriptRuntime runtime) {
         Object lhsValue = leftHandSide.evaluate(runtime);
         Object rhsValue = rightHandSide.evaluate(runtime);
-        //TODO handle string case
         if (getType().equals(CatscriptType.INT)) {
             if (isAdd()) {
                 return (Integer) lhsValue + (Integer) rhsValue;
@@ -84,7 +83,7 @@ public class AdditiveExpression extends Expression {
                 return (Integer) lhsValue - (Integer) rhsValue;
             }
         } else if (getType().equals(CatscriptType.STRING) && isAdd()) {
-            return (String) lhsValue + rhsValue;
+            return "" + lhsValue + rhsValue;
         } else {
             return null;
         }
