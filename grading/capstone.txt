@@ -1,0 +1,4 @@
+Errors:
+
+- Missing source zip
+- Missing matthew_vandeberg_portfolio.pdf
