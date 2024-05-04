@@ -7,6 +7,7 @@ import edu.montana.csci.csci468.parser.ErrorType;
 import edu.montana.csci.csci468.parser.ParseError;
 import edu.montana.csci.csci468.parser.SymbolTable;
 import edu.montana.csci.csci468.tokenizer.Token;
+import org.objectweb.asm.Opcodes;
 
 import java.util.Objects;
 
@@ -90,12 +91,16 @@ public class ComparisonExpression extends Expression {
 
     @Override
     public void transpile(StringBuilder javascript) {
-        super.transpile(javascript);
+        getLeftHandSide().transpile(javascript);
+        javascript.append(operator.getStringValue());
+        getRightHandSide().transpile(javascript);
     }
 
     @Override
     public void compile(ByteCodeGenerator code) {
-        super.compile(code);
+        getLeftHandSide().compile(code);
+        getRightHandSide().compile(code);
+        code.addInstruction(Opcodes.I);
     }
 
 }

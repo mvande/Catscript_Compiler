@@ -61,7 +61,7 @@ public class ListLiteralExpression extends Expression {
 
     @Override
     public void compile(ByteCodeGenerator code) {
-        super.compile(code);
+        code.pushConstantOntoStack(values);
     }
 
 
