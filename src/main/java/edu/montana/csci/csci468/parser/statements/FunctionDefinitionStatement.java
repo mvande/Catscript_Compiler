@@ -7,7 +7,9 @@ import edu.montana.csci.csci468.parser.CatscriptType;
 import edu.montana.csci.csci468.parser.ErrorType;
 import edu.montana.csci.csci468.parser.ParseError;
 import edu.montana.csci.csci468.parser.SymbolTable;
+import edu.montana.csci.csci468.parser.expressions.Expression;
 import edu.montana.csci.csci468.parser.expressions.TypeLiteral;
+import org.objectweb.asm.Opcodes;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -155,6 +157,19 @@ public class FunctionDefinitionStatement extends Statement {
 
     @Override
     public void compile(ByteCodeGenerator code) {
-        super.compile(code);
+        code.pushMethod(Opcodes.ACC_PUBLIC, name, getDescriptor());
+        // iterate over parameters and assign slots to each
+        for (String param : argumentNames) {
+            code.createLocalStorageSlotFor(param);
+        }
+        //iterate over the statement and compile them
+        for (Statement stmt : body) {
+            stmt.compile(code);
+        }
+        //if this is a void function, always add a return at the end
+        if (getType().equals(CatscriptType.VOID)) {
+            code.addInstruction(Opcodes.RETURN);
+        }
+        code.popMethod();
     }
 }

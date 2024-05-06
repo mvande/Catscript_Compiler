@@ -7,9 +7,11 @@ import edu.montana.csci.csci468.parser.ErrorType;
 import edu.montana.csci.csci468.parser.ParseError;
 import edu.montana.csci.csci468.parser.SymbolTable;
 import edu.montana.csci.csci468.parser.statements.FunctionDefinitionStatement;
+import org.objectweb.asm.Opcodes;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class FunctionCallExpression extends Expression {
     private final String name;
@@ -83,7 +85,19 @@ public class FunctionCallExpression extends Expression {
 
     @Override
     public void compile(ByteCodeGenerator code) {
-        super.compile(code);
+        code.addVarInstruction(Opcodes.ALOAD, 0);
+        //iterate over all parameters and compile them
+        // if the parameter type is Object, then box
+        for (Expression arg: arguments) {
+            arg.compile(code);
+            if(getProgram().getFunction(name).getParameterType(0).equals(CatscriptType.OBJECT)) {
+                box(code, arg.getType());
+            }
+        }
+        code.addMethodInstruction(Opcodes.INVOKEVIRTUAL,
+                code.getProgramInternalName(),
+                getProgram().getFunction(name).getName(),
+                getProgram().getFunction(name).getDescriptor());
     }
 
 

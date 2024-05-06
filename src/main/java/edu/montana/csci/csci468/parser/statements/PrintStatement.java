@@ -4,6 +4,7 @@ import edu.montana.csci.csci468.bytecode.ByteCodeGenerator;
 import edu.montana.csci.csci468.eval.CatscriptRuntime;
 import edu.montana.csci.csci468.parser.SymbolTable;
 import edu.montana.csci.csci468.parser.expressions.Expression;
+import org.objectweb.asm.Opcodes;
 
 public class PrintStatement extends Statement {
     private Expression expression;
@@ -37,7 +38,13 @@ public class PrintStatement extends Statement {
 
     @Override
     public void compile(ByteCodeGenerator code) {
-        super.compile(code);
+        code.addVarInstruction(Opcodes.ALOAD, 0); //puts the "this" pointer onto operand stack
+        expression.compile(code);                     // will add all bytecode of the expression to the program
+        box(code, expression.getType());
+        code.addMethodInstruction(Opcodes.INVOKEVIRTUAL, //invoke the virtual method print on the parent class
+                code.getProgramInternalName(),
+                "print",
+                "(Ljava/lang/Object;)V");
     }
 
 }
