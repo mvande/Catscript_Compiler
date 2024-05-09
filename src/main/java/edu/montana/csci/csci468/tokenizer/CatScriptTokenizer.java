@@ -39,7 +39,6 @@ public class CatScriptTokenizer {
     }
 
     private boolean scanString() {
-        // TODO implement string scanning here!
         if(matchAndConsume('"')) {
             int start = position;
             while(peek() != '"' && !tokenizationEnd()) {
@@ -91,7 +90,6 @@ public class CatScriptTokenizer {
     }
 
     private void scanSyntax() {
-        // TODO - implement rest of syntax scanning
         int start = position;
         if(matchAndConsume('+')) {
             tokenList.addToken(PLUS, "+", start, position, line, lineOffset);

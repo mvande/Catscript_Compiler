@@ -84,7 +84,6 @@ public class ForStatement extends Statement {
             }
             runtime.popScope();
         }
-//        super.execute(runtime);
     }
 
     @Override
