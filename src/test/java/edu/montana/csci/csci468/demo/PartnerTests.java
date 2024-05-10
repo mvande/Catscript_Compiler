@@ -1,11 +1,11 @@
-package edu.montana.csci.csci468;
+package edu.montana.csci.csci468.demo;
 
 import edu.montana.csci.csci468.CatscriptTestBase;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CapstoneTests extends CatscriptTestBase
+public class PartnerTests extends CatscriptTestBase
 {
 
     // This test ensures that the compiler successfully handles variable names,

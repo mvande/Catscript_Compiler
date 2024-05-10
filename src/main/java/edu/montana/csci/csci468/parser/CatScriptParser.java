@@ -244,7 +244,7 @@ public class CatScriptParser {
             varStatement.setVariableName(require(IDENTIFIER, varStatement).getStringValue());
 
             if (tokens.matchAndConsume(COLON)) {
-                varStatement.setExplicitType(parseTypeExpression().getType()); //TODO implement parseTypeExpression function
+                varStatement.setExplicitType(parseTypeExpression().getType());
             }
 
             require(EQUAL, varStatement);
@@ -284,7 +284,7 @@ public class CatScriptParser {
     //  Expressions
     //============================================================
 
-    private TypeLiteral parseTypeExpression() { //TODO implement types?
+    private TypeLiteral parseTypeExpression() {
         if (tokens.match(IDENTIFIER)) {
             Token type = tokens.consumeToken();
             TypeLiteral typeLiteral = new TypeLiteral();

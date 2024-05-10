@@ -1,5 +1,6 @@
 package edu.montana.csci.csci468.parser;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,9 +32,11 @@ public class CatscriptType {
         return false;
     }
 
-    // TODO memoize this call
+    //Design Pattern for Capstone Project
+    static HashMap<CatscriptType, ListType> cache = new HashMap<>();
     public static CatscriptType getListType(CatscriptType type) {
-        return new ListType(type);
+        cache.computeIfAbsent(type, listType -> new ListType(type));
+        return cache.get(type);
     }
 
     @Override
